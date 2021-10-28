@@ -24,8 +24,16 @@ function newSkills(req, res){
   res.render('skills/new')
 }
 
+function create(req, res){
+  console.log(req.body)
+  skillsDb.create(req.body, function(error, skills){
+    res.redirect('/skills')
+  })
+}
+
 export {
 	index,
   show,
   newSkills as new, 
+  create
 }
