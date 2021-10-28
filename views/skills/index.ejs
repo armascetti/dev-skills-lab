@@ -8,7 +8,7 @@
 </head>
 <body>
   <body>
-    <h1>The Skills</h1>
+    <h1>The Skills as of <%= time %></h1>
     <% if(error) { %>
       <h2><%= error %></h2>
     <% } %>
@@ -21,6 +21,7 @@
         </li>
       <% }) %>
     </ul>
+    <a href="/skills/new"> Add Skill</a>
   </body>
 </body>
 </html>
