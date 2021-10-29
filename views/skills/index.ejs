@@ -5,23 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Developer Skills</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-  <body>
     <h1>The Skills as of <%= time %></h1>
     <% if(error) { %>
       <h2><%= error %></h2>
     <% } %>
     <ul>
-      <% skills.forEach(function(skills) { %>
+      <% skills.forEach(function(skill) { %>
         <li>
-          <a href= "/skills/<%= skills._id %>"><%= skills.text %></a>
+          <form 
+          action="/skills/<%= skill._id %>?_method=DELETE"
+          class="delete-form"
+          method="POST"
+          >
+          <button type="submit">X</button>
+          </form>
+          <a href="/skills/<%= skill._id %>"><%= skill.text %></a>
             - 
-          <%= skills.yes ? 'YES' : 'Stay Tuned' %>
+          <%= skill.yes ? 'YES' : 'Stay Tuned' %>
         </li>
       <% }) %>
     </ul>
     <a href="/skills/new"> Add Skill</a>
-  </body>
 </body>
 </html>

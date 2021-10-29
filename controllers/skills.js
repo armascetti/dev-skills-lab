@@ -1,8 +1,8 @@
-import * as skillsDb from '../data/skills-db.js'
+import * as skillDb from '../data/skills-db.js'
 
 
 function index(req, res) {
-  skillsDb.find({}, function(error, skills) {
+  skillDb.find({}, function(error, skills) {
     res.render('skills/index', {
       skills: skills,
       error: error,
@@ -12,21 +12,27 @@ function index(req, res) {
 }
 
 function show(req, res){
-  skillsDb.findById(req.params.id, function(error, skills){
+  skillDb.findById(req.params.id, function(error, skills){
     res.render('skills/show', {
       skills:skills, 
-      error: error 
+      error: error, 
     })
   })
 }
 
-function newSkills(req, res){
+function newSkill(req, res){
   res.render('skills/new')
 }
 
 function create(req, res){
   console.log(req.body)
-  skillsDb.create(req.body, function(error, skills){
+  skillDb.create(req.body, function(error, skill){
+    res.redirect('/skills')
+  })
+}
+
+function deleteSkill(req, res){
+  skillDb.findByIdAndDelete(req.params.id, function(error, skill){
     res.redirect('/skills')
   })
 }
@@ -34,6 +40,8 @@ function create(req, res){
 export {
 	index,
   show,
-  newSkills as new, 
-  create
+  newSkill as new, 
+  create,
+  deleteSkill as delete
 }
+
